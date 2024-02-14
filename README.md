@@ -1,9 +1,5 @@
 # Hyperface - Real-Time Time Tracking Application
 
-
-
-Hyperface is a powerful real-time time tracking application designed to help users track their time spent on various tasks and projects efficiently.
-
 ## Tech Stack
 
 The application is built using the following technologies:
