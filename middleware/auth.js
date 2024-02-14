@@ -4,12 +4,14 @@ require("dotenv").config()
 
 const auth=(req,res,next)=>
 {
-    const token=req.headers.authorization.split(" ")[1]
+    const token=req.headers.authorization
     if(token){
+        // console.log("token",token)
         jwt.verify(token,process.env.tokenpass,function(err, decoded) {
             if(decoded){
-                req.body.userID=decoded.userID
-                req.body.quantity = 1
+                console.log("decoded",decoded)
+                req.body.userId=decoded.userid
+                
                 next()
             }else{
                 res.status(401).send({"msg":"Wrong Credentials"})

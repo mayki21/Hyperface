@@ -10,17 +10,17 @@ const eventSchema = new Schema({
     type: String
   },
   startTime: {
-    type: Date,
+    type: String,
     required: true
   },
   endTime: {
-    type: Date,
+    type: String,
     required: true
   },
-  allDay: {
-    type: Boolean,
-    default: false
-  },
+  // allDay: {
+  //   type: Boolean,
+  //   default: false
+  // },
   isPrivate: {
     type: Boolean,
     default: false

@@ -21,8 +21,10 @@ userrouter.post("/register", async (req, res) => {
     }
 });
 
+
 userrouter.post("/login", async (req, res) => {
     const { email, password } = req.body;
+    console.log("email",email,"password",password)
     try {
         // Find the user by email
         const user = await User.findOne({ email });
@@ -32,7 +34,16 @@ userrouter.post("/login", async (req, res) => {
             if (isMatch) {
                 // Generate JWT token
                 const token = jwt.sign({ "userid": user._id }, process.env.tokenpass, { expiresIn: "6h" });
-                res.status(200).send({ "msg": "Login successful", "token": token, "userdetails": user });
+                // Omitting the password field from the user details in the response
+                const userDetails = {
+                    _id: user._id,
+                    username: user.username,
+                    email: user.email,
+                    role: user.role,
+                    createdAt: user.createdAt,
+                    updatedAt: user.updatedAt
+                };
+                res.status(200).send({ "msg": "Login successful", "token": token, "userdetails": userDetails });
             } else {
                 res.status(401).send({ "msg": "Invalid credentials" });
             }
